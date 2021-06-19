@@ -1,0 +1,17 @@
+on:
+  schedule:
+    - cron: 0 21 * * 1-5
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run script
+        run: |
+          pip install poetry
+          poetry install
+          poetry run python run.py
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
