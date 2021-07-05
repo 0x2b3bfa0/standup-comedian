@@ -17,7 +17,7 @@ class Standup:
         organization: Optional[str] = None,
         limit: pendulum.DateTime = (
             pendulum.now().subtract(days=3)
-            if pendolum.now().day_of_week == pendulum.MONDAY else
+            if pendulum.now().day_of_week == pendulum.MONDAY else
             pendulum.now().subtract(days=1)
         ),
     ):
