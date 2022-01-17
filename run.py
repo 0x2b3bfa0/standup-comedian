@@ -47,7 +47,7 @@ class Standup:
         edited_wiki_pages = collections.Counter()
 
         def link(repository, number, title):
-            return f"_{title}_ (<https://github.com/{repository}/pull/{number}|{repository}#{number}>)"
+            return f"_<https://github.com/{repository}/pull/{number}|{title}>_ on <https://github.com/{repository}|{repository}>"
 
         for event in self.events():
             if event.type in (
