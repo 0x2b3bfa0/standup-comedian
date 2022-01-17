@@ -96,14 +96,14 @@ class Standup:
             entry = f"• Open {title}"
             if comments := commented_pull_requests.get(title):
                 entry += (
-                    f" and comment {comments} {'times' if comments > 1 else 'time'}"
+                    f" {'🔥' if comments > 10 else ''}\n"
                 )
             pull_requests += entry + "\n"
-        for title, count in commented_pull_requests.items():
+        for title, count in sorted(commented_pull_requests.items(), key=lambda item: item[1], reverse=True):
             if title in created_pull_requests:
                 continue
             pull_requests += (
-                f"• Comment {count} {'times' if count > 1 else 'time'} on {title}\n"
+                f"• Review {title} {'🔥' if count > 10 else ''}\n"
             )
 
         issues = ""
@@ -111,14 +111,14 @@ class Standup:
             entry = f"• Open {title}"
             if comments := commented_issues.get(title):
                 entry += (
-                    f" and comment {comments} {'times' if comments > 1 else 'time'}"
+                    f" {'🔥' if comments > 10 else ''}\n"
                 )
             issues += entry + "\n"
-        for title, count in commented_issues.items():
+        for title, count in sorted(commented_issues.items(), key=lambda item: item[1], reverse=True):
             if title in created_issues:
                 continue
             issues += (
-                f"• Comment {count} {'times' if count > 1 else 'time'} on {title}\n"
+                f"• Discuss {title} {'🔥' if count > 10 else ''}\n"
             )
 
         wiki = ""
