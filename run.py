@@ -123,17 +123,9 @@ class Standup:
 
         wiki = ""
         for title, count in edited_wiki_pages.items():
-            wiki += f"• Edit {title} {count} {'times' if count > 1 else 'time'}\n"
+            wiki += f"• Edit {title} {'🔥' if count > 10 else ''}\n"
 
-        results = ""
-        if pull_requests:
-            results += f"*Pull requests*\n{pull_requests}\n"
-        if issues:
-            results += f"*Issues*\n{issues}\n"
-        if wiki:
-            results += f"\n*Wiki*\n{wiki}\n"
-
-        return results
+        return pull_requests + issues + wiki
 
 slack.WebClient(os.getenv("SLACK_TOKEN")).chat_postMessage(
     text=Standup("0x2b3bfa0", "iterative").text(), channel="U01NS7060QJ"
