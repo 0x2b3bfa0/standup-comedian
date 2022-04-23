@@ -115,7 +115,7 @@ class Standup:
                 )
             issues += entry + "\n"
         for title, count in sorted(commented_issues.items(), key=lambda item: item[1], reverse=True):
-            if title in created_issues:
+            if title in created_issues or title in created_pull_requests or title in commented_pull_requests:
                 continue
             issues += (
                 f"• Discuss {title} {'🔥' if count > 10 else ''}\n"
