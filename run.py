@@ -128,5 +128,5 @@ class Standup:
         return pull_requests + issues + wiki
 
 slack.WebClient(os.getenv("SLACK_TOKEN")).chat_postMessage(
-    text=Standup("0x2b3bfa0", "iterative").text(), channel="U01NS7060QJ"
+    text=Standup("0x2b3bfa0", "iterative").text().replace("`", ""), channel="U01NS7060QJ"
 )
